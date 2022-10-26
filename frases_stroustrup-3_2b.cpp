@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <conio.h>
+#include <string.h>
 
 using namespace std;
 
@@ -31,6 +32,36 @@ using namespace std;
         }
         
     }
+    void longestWord(ifstream$ file ){
+        string LongestWord = " ", sentence;
+        while (!file.eof())
+        {
+           getline(file, sentence);
+           /*recorro sentence*/
+           int i = 0;
+            while (i <= sentence.length())
+                            {   
+                auto it = sentence.begin( );
+                
+                for( auto it2 = it; it2 != sentence.end( ); ++it2 )
+                {
+                    if ( *it2 == ' ' || *it2 == '.' || *it2 == ',')
+                    {
+                    size_t length = distance( it, it2 );
+                    if ( length > LongestWord.size( ) )
+                        LongestWord = string( it, it2 );
+                    it = it2+1;
+                    }
+                }
+                
+                
+            }
+                        
+           }
+           
+        }
+        
+        
     int showWords(ifstream& file){
         int sentenceNumber = 0;
         int totalWords = 0;
@@ -49,12 +80,13 @@ using namespace std;
         cout<<"El promedio de palabras por linea es de: " << averageOfWords <<"."<<endl;
 
     }
-
+    
 int main()
 {
     ifstream textFile = openFile("QuotesofBjarne.txt");
     showWords(textFile);
+    longestWord(textFile);
     closeFile(textFile);
-
+    getchar();
     return 0;
 }
